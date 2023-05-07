@@ -1,9 +1,9 @@
 **BASKETBALL REPRODUCIBLE ANALYSIS PROJECT**
 
 Github repository for BASKETBALL REPRODUCIBLE ANALYSIS PROJECT is classified into 3 folder
-1.Data
-2.Knitr Report
-3.RMD file
+**1.Data**
+**2.Knitr Report**
+**3.RMD file**
 
 **1.DATA:**
 
