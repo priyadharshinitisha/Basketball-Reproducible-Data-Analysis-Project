@@ -1,4 +1,4 @@
-		BASKETBALL REPRODUCIBLE ANALYSIS PROJECT
+BASKETBALL REPRODUCIBLE ANALYSIS PROJECT
 
 1.INTRODUCTION:
 Basketball is a popular sport worldwide, with millions of fans and players. In the National Basketball Association (NBA), teams compete for the championship title by playing against each other in a series of games. Each basketball team comprises five positions: point guard, shooting guard, small forward, power forward, and centre. Each position has different requirements, and players with distinct skill sets are required to form a balanced and successful team.
