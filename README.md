@@ -1,13 +1,15 @@
-BASKETBALL REPRODUCIBLE ANALYSIS PROJECT
+**BASKETBALL REPRODUCIBLE ANALYSIS PROJECT**
 
-1.INTRODUCTION:
+**1.INTRODUCTION:
+
 Basketball is a popular sport worldwide, with millions of fans and players. In the National Basketball Association (NBA), teams compete for the championship title by playing against each other in a series of games. Each basketball team comprises five positions: point guard, shooting guard, small forward, power forward, and centre. Each position has different requirements, and players with distinct skill sets are required to form a balanced and successful team.
 The Chicago Bulls is an NBA team that finished the 2018-19 season in 27th place out of 30 based on win-loss record, with a player contract budget that ranked 26th out of 30 in the following season (2019-20). The team struggled to put together a competitive team and required a data-driven approach to improve their performance in the upcoming season. As a data analyst, the aim of the project is to use data analysis to identify the best five starting players for the Chicago Bulls for the upcoming NBA season.
 This project's justification is based on the team's performance, where the Chicago Bulls requires a team that can compete at a high level consistently. By identifying the best players for each position and optimizing the team's budget, the project aims to provide the team with actionable insights that can help improve their win-loss record and compete more effectively in the NBA. The ultimate goal is to assist the team in building a competitive and successful team that can perform well in the league. Additionally, the project will provide insights into areas where the team can improve and make data-driven decisions to maximize their chances of success.
 The limitations of the project include the unavailability of data on players' injuries and other factors that may impact their performance, which may affect the project's accuracy. Furthermore, the project's scope is limited to the budget allocated to player contracts, and it does not consider other factors that may impact the team's performance, such as coaching strategies and team dynamics.
 In summary, this project's aim is to identify the best five starting players for the Chicago Bulls for the upcoming NBA season using data analysis, taking into account player statistics from the previous season and their salaries. The project's importance lies in its potential to impact the team's performance and success, which could have far-reaching implications for the team's future. By providing the team with actionable insights, the project aims to assist the team in building a competitive and successful team that can perform well in the NBA
 
-2.Data reading and cleaning
+**2.Data reading and cleaning**
+
 To complete the task assigned by the general manager of the Chicago Bulls, we need to find the best five starting players (one from each position) the team can afford with the budget of $118 million. We have been provided with five datasets. These are:
 2018-19_nba_player-statistics.csv: It contains total statistics for individual NBA players during the 2018-19 season.
 2018-19_nba_player-salaries.csv: It contains the salary for individual players during the 2018-19 season.
@@ -23,7 +25,8 @@ The next step involves changing the data types of certain variables. In this cod
 Finally, the code cleans the data by mapping team names to their corresponding abbreviations or full names. This helps to ensure consistency across datasets, especially when merging datasets based on team names. For example, the player statistics dataset uses team names in their full form while the team payroll dataset uses team names in their abbreviated form. The code maps each abbreviated team name to its full form using the "case_when" function. Similarly, the team payroll dataset is cleaned by mapping the team names to the brief team names used in the brief.
 In summary, loading and cleaning data is an important step in data analysis, as it ensures the accuracy and consistency of the data. This code provides an example of how to load and clean several datasets related to NBA teams and players. By following the code, one can load and clean other datasets in R as well.
 
-3.Exploratory data analysis:
+**3.Exploratory data analysis**:
+
 Exploratory data analysis (EDA) is a crucial step in data analysis that allows data scientists to gain a deeper understanding of the data and identify any potential issues that need to be addressed before moving on to more complex analysis. In this process, the data is examined in a variety of ways to identify patterns, relationships, and anomalies.
 First, it reads in five data frames: player_stats, player_salaries, team_payroll, team_stats1, and team_stats2. The function glimpse() is then used to view the structure of each data frame. glimpse() is a useful function for quickly viewing the structure of a data frame, including the variable names, their data type, and the first few observations.
 Next, the distribution of variables is checked using summary statistics and visualizations. For the player_stats data frame, the distribution of player age and points are visualized using histograms. For the player_salaries and team_payroll data frames, the distribution of salaries is visualized using histograms with a logarithmic scale on the y-axis to better view the distribution. For team_stats1 and team_stats2 data frames, the age and point distributions are visualized respectively using histograms.
@@ -36,7 +39,8 @@ By capturing relevant data on player statistics, such as performance, age, heigh
 Furthermore, by ensuring that our data model is reproducible, we can easily update it with new data as it becomes available. This means that we can continually assess player performance and make informed decisions based on the latest data. In the future, we can incorporate data from the current NBA season or include data from other sources, such as scouting reports or expert opinions, to improve the accuracy of our model.
 In conclusion, developing a reproducible data model that captures relevant player statistics and incorporates appropriate statistical methods is essential for identifying the best five starting players for each position for the Chicago Bulls. By creating a model that is flexible and scalable, we can update and modify it in the future to make informed decisions based on the latest data.
 
-4. Data modelling and results
+**4. Data modelling and results**
+
 This presented is an example of a linear regression model that predicts points (PTS) based on salary, field goals attempted (FGA), and free throws attempted (FTA) in the NBA. The model was created using R programming language, specifically the "lm" function which fits a linear regression model. The data used is player statistics and salaries for the most recent NBA season.
 The output shows a summary of the linear regression model. The coefficients for FGA and FTA have p-values less than 2e-16, which means they are statistically significant and strongly associated with PTS. However, the coefficient for salary has a p-value of 0.288, which is not statistically significant and suggests that salary is not a good predictor of PTS.
 The adjusted R-squared value of 0.9922 indicates that the model explains a high proportion of the variance in PTS, which means that the model is a good fit for the data. The F-statistic of 2.915e+04 with a p-value < 2.2e-16 indicates that the overall model is significant, which means that the model is better at predicting PTS than just using the mean of the data.
@@ -47,7 +51,9 @@ Assumption checking is a crucial step in validating the results of a statistical
 Homoscedasticity refers to the assumption that the variance of the residuals of the model is constant across all levels of the predictor variables. The plot of residuals vs. fitted values is used to check for homoscedasticity. In the plot generated by the code, the residuals are plotted against the predicted values of the dependent variable (PTS), and we look for a pattern in the points. If the points are randomly scattered around the horizontal line, it indicates that the assumption of homoscedasticity holds. However, if there is a visible pattern in the plot, such as a funnel shape or a curve, it indicates that the model violates the homoscedasticity assumption.
 Normality refers to the assumption that the residuals of the model follow a normal distribution. The normality plot (also known as a Q-Q plot) is used to check for normality. In the plot generated by the code, the residuals are plotted against the quantiles of a normal distribution. If the residuals follow a straight line in the plot, it indicates that they are normally distributed. However, if there is a visible deviation from a straight line, such as a curve or a bend, it indicates that the model violates the normality assumption.
 By checking for these assumptions, we can ensure that the linear regression model is valid and that the results can be trusted. If the assumptions are violated, we may need to modify the model or use a different statistical method to obtain reliable results.
-5. Player recommendations
+
+**5. Player recommendations**
+
 The process analyzes and recommends top players based on various criteria in a basketball dataset. The dataset includes player statistics and salaries for the 2019-2020 NBA season. The script includes four sections, each focusing on different criteria to select the top five players.
 The first section focuses on selecting the top five players in each position based on cost-effectiveness. The script calculates the cost-effectiveness score for each player, which is the total number of points a player scores in a season divided by their salary. Then, it selects the top player for each position based on their cost-effectiveness score. The output includes the name of the player, their team, position, age, games played, points scored, salary, and cost-effectiveness score. The output also includes the total salary of the selected players.
 The second section is similar to the first section, but it only considers players from the Chicago Bulls team. The script filters out players from other teams and selects the top player for each position based on their cost-effectiveness score. The output includes the same information as the first section, but only for the Chicago Bulls players.
@@ -58,7 +64,7 @@ Overall, we provide useful insights and recommendations for basketball team mana
 
 The top 5 players based on the analysis are Stephan Curry, Russell Westbrook, Lebron James, Chris Paul, Kyle Lowry.Top of Form
 
-6.Summary
+**6.Summary**
 
 In this project, we aimed to help a general manager of a basketball team build a strong team within a set budget by analyzing NBA player data. Our analysis involved cleaning and processing the data and conducting exploratory data analysis to gain insights into the data. We visualized player salary distributions, player performance metrics, and the relationships between them.
 To model the relationship between player performance metrics and salary, we used linear regression analysis. We found that performance metrics such as Points Per Game (PPG), Rebounds Per Game (RPG), and Assists Per Game (APG) were significant predictors of player salary. We then used this model to predict salaries for each player in the dataset, identifying overpaid and underpaid players.
