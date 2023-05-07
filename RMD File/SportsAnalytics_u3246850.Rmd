@@ -3,6 +3,7 @@ title: "SportsAnalytics_u3246850"
 output:
   pdf_document: default
   html_document: default
+  word_document: default
 date: "2023-05-07"
 ---
 
@@ -255,6 +256,12 @@ colSums(is.na(player_stats_salaries))
 # Removing null values rows in salaries
 player_stats_salaries <- player_stats_salaries[complete.cases(player_stats_salaries$player_id), ]
 
+# Removing duplicates which happens because of trading of players in a season
+player_stats_salaries<- player_stats_salaries %>% 
+  group_by(player_id) %>% 
+  filter(Tm == "Total" | (!"Total" %in% Tm) | (Tm == "Total" & row_number() == 1)) %>% 
+  ungroup()
+
 # Scatter plot to understand the relationship between salary and PTS of a player
 ggplot(player_stats_salaries, aes(x = salary, y = PTS)) +
   geom_point() +
@@ -345,13 +352,13 @@ lm_model <- lm(PTS ~ salary +  FGA + FTA, data = player_stats_salaries)
 # Display model summary
 summary(lm_model)
 
-# PTS = -8.121 + 2.533e-07(salary) + 1.038(FGA) + 0.8713(FTA)
+# PTS = -8.539 + 2.726e-07(salary) + 1.04(FGA) + 0.8669(FTA)
 
 
 
 
 #***************** Model Interpretation *************************************
-# In the linear regression model with PTS as the dependent variable and salary, FGA, and FTA as independent # variables, the coefficients for FGA and FTA are significant with p-values < 2e-16, indicating that these # variables are strongly associated with PTS. However, the coefficient for salary is not significant with a # p-value of 0.288, suggesting that salary is not a good predictor of PTS. The adjusted R-squared value of # 0.9922 indicates that the model explains a high proportion of the variance in PTS, and the F-statistic of # 2.915e+04 with a p-value < 2.2e-16 indicates that the overall model is significant. The residual standard # error of 40.32 suggests that the model has a moderate level of error in predicting PTS, and the normal Q-Q # plot and residual vs. fitted plot do not show any major departures from normality or homoscedasticity # assumptions
+# In the linear regression model with PTS as the dependent variable and salary, FGA, and FTA as independent # variables, the coefficients for FGA and FTA are significant with p-values < 2e-16, indicating that these # variables are strongly associated with PTS. However, the coefficient for salary is not significant with a # p-value of 0.4, suggesting that salary is not a good predictor of PTS. The adjusted R-squared value of # 0.9916 indicates that the model explains a high proportion of the variance in PTS, and the F-statistic of # 2.007e+04 with a p-value < 2.2e-16 indicates that the overall model is significant. The residual standard # error of 40.32 suggests that the model has a moderate level of error in predicting PTS, and the normal Q-Q # plot and residual vs. fitted plot do not show any major departures from normality or homoscedasticity # assumptions
 
 ```
 
@@ -383,7 +390,7 @@ The fourth section selects the top five players irrespective of position based o
 Overall, we provide useful insights and recommendations for basketball team management to help them select the most effective and cost-efficient players. It also demonstrates how R can be used to analyze and visualize data to make data-driven decisions.
 
 
-The top 5 players based on the analysis are Stephan Curry, Russell Westbrook, Lebron James, Chris Paul, Kyle Lowry.Top of Form
+The top 5 players based on the analysis are Alex Caruso, Kadeem Allen, Lebron James, Lauri Markkanen, James Harden
 
 
 
@@ -538,7 +545,7 @@ player_stats_salaries[order(-player_stats_salaries$salary),][1:5,] %>% select(pl
 # 6.Summary
 
 In this project, we aimed to help a general manager of a basketball team build a strong team within a set budget by analyzing NBA player data. Our analysis involved cleaning and processing the data and conducting exploratory data analysis to gain insights into the data. We visualized player salary distributions, player performance metrics, and the relationships between them.
-To model the relationship between player performance metrics and salary, we used linear regression analysis. We found that performance metrics such as salary, FGA  and FTA  were significant predictors of player point. We then used this model to predict salaries for each player in the dataset, identifying overpaid and underpaid players.
+To model the relationship between player performance metrics and salary, we used linear regression analysis. We found that performance metrics such as salary, FGA  and FTA  were significant predictors of player salary. We then used this model to predict salaries for each player in the dataset, identifying overpaid and underpaid players.
 Using optimization techniques, we selected a starting five of players with the highest combined performance metric score while staying within the budget constraint. We also recommended top players for each position based on their cost-effectiveness, as well as the top five players irrespective of position.
 Our analysis has provided the general manager with valuable insights into how to build a competitive basketball team within a budget. We identified which players to target, which players are overpaid and underpaid, and which positions to focus on to maximize the team's performance.
 However, our analysis is limited by the scope of the dataset and the assumptions made in our model. Other factors such as player popularity, team market size, or sponsorship deals may affect player salaries, which we did not consider. Additionally, our model assumes a linear relationship between performance metrics and salary, which may not always be the case in practice. Therefore, it is essential for the general manager to consider these limitations when making decisions based on our analysis.
